@@ -1,4 +1,5 @@
 EGNN-Based Autoencoder for Equivariant Representation Learning on Noisy Shapes
+![Latent Space](reconstruction_Alonglinespace.png)
 
 This repository demonstrates an autoencoder architecture built with Equivariant Graph Neural Networks (EGNNs) for learning rotation- and translation-equivariant representations of simple 2D geometric shapes, specifically noisy circles and squares. The objective is to:
 
