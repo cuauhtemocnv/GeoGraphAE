@@ -6,6 +6,7 @@ This repository demonstrates an autoencoder architecture built with Equivariant 
 Learn a 2D latent space where these shapes are effectively separated by class (circle or square)
 
 Ensure that the latent representation is equivariant to rotations and translations
+![equivariance](equivar_test.png)
 
 Reconstruct the original shape from the latent vector while maintaining geometric fidelity
 
