@@ -1,28 +1,26 @@
-EGNN-Based Autoencoder for Equivariant Representation Learning on Noisy Shapes
+# EGNN-Based Autoencoder for Equivariant Representation Learning on Noisy Shapes
+
 ![Latent Space](reconstruction_Alonglinespace.png)
 
-This repository demonstrates an autoencoder architecture built with Equivariant Graph Neural Networks (EGNNs) for learning rotation- and translation-equivariant representations of simple 2D geometric shapes, specifically noisy circles and squares. The objective is to:
+This repository demonstrates an autoencoder architecture built with Equivariant Graph Neural Networks (EGNNs) for learning rotation- and translation-equivariant representations of simple 2D geometric shapes, specifically noisy circles and squares.
 
-Learn a 2D latent space where these shapes are effectively separated by class (circle or square)
+## Objective
 
-Ensure that the latent representation is equivariant to rotations and translations
-![equivariance](equivar_test.png)
+- Learn a 2D latent space where shapes are effectively separated by class (circle or square)
+- Ensure the latent representation is equivariant to rotations and translations
+- Reconstruct the original shape from the latent vector while maintaining geometric fidelity
+- Visualize smooth transitions between shapes in the latent space
 
-Reconstruct the original shape from the latent vector while maintaining geometric fidelity
+![Equivariance Demonstration](equivar_test.png)
 
-Visualize the smooth transition from one shape to another in the latent space
+## Overview
 
-# Overview
+This project includes:
 
-## This project includes:
-
-  Synthetic graph-based datasets for noisy circles and squares
-  
-  An EGNN-based encoder-decoder model
-  
-  Latent-space visualization tools
-  
-  Shape reconstruction plots to evaluate geometric preservation
+- Synthetic graph-based datasets for noisy circles and squares
+- An EGNN-based encoder-decoder model
+- Latent-space visualization tools
+- Shape reconstruction plots to evaluate geometric preservation
 
 ## Motivation
 
@@ -31,11 +29,19 @@ Many real-world tasks involve geometric structures that should not change under 
 ## Dataset Generation
 
 Graphs are generated with 20 nodes:
-Circles (label = 0): nodes sampled near a circle with radial noise
-Squares (label = 1): nodes sampled along the perimeter of a square with noise
+
+- **Circles** (label = 0): Nodes sampled near a circle with radial noise
+- **Squares** (label = 1): Nodes sampled along the perimeter of a square with noise
+
 Each node has 2D coordinates and is connected to its 2 nearest neighbors.
+
+```python
 circle = generate_graph(label=0)
-square = generate_graph(label=1)
+square = generate_graph(label=1)![Latent Space](reconstruction_Alonglinespace.png)
+```
+![equivariance](equivar_test.png)
+
+
 ### Model Architecture
   The core of the model is an Equivariant Graph Neural Network (EGNN) used in both the encoder and decoder.
 
