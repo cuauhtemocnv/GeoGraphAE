@@ -12,60 +12,46 @@ Reconstruct the original shape from the latent vector while maintaining geometri
 
 Visualize the smooth transition from one shape to another in the latent space
 
-Overview
+# Overview
 
-This project includes:
+## This project includes:
 
-Synthetic graph-based datasets for noisy circles and squares
+  Synthetic graph-based datasets for noisy circles and squares
+  
+  An EGNN-based encoder-decoder model
+  
+  Latent-space visualization tools
+  
+  Shape reconstruction plots to evaluate geometric preservation
 
-An EGNN-based encoder-decoder model
-
-Latent-space visualization tools
-
-Shape reconstruction plots to evaluate geometric preservation
-
-Motivation
+## Motivation
 
 Many real-world tasks involve geometric structures that should not change under rigid transformations. In molecular modeling, robotics, and computer vision, equivariance to rotations and translations is essential. Here, we explore this concept with simple synthetic shapes, laying the groundwork for more complex datasets.
 
-Dataset Generation
+## Dataset Generation
 
 Graphs are generated with 20 nodes:
-
 Circles (label = 0): nodes sampled near a circle with radial noise
-
 Squares (label = 1): nodes sampled along the perimeter of a square with noise
-
 Each node has 2D coordinates and is connected to its 2 nearest neighbors.
-
 circle = generate_graph(label=0)
 square = generate_graph(label=1)
+### Model Architecture
+    The core of the model is an Equivariant Graph Neural Network (EGNN) used in both the encoder and decoder.
 
-Model Architecture
+### Encoder
+    Accepts node coordinates (as features)
+    Uses EGNN layers to build rotation- and translation-equivariant representations
+    Applies global mean pooling to summarize the graph
+    Projects into a 2D latent space
 
-The core of the model is an Equivariant Graph Neural Network (EGNN) used in both the encoder and decoder.
+### Decoder
+    Starts from a 2D latent vector repeated across nodes
+    Initializes coordinates from a learnable template
+    Reconstructs the node positions using EGNN layers
 
-Encoder
-
-Accepts node coordinates (as features)
-
-Uses EGNN layers to build rotation- and translation-equivariant representations
-
-Applies global mean pooling to summarize the graph
-
-Projects into a 2D latent space
-
-Decoder
-
-Starts from a 2D latent vector repeated across nodes
-
-Initializes coordinates from a learnable template
-
-Reconstructs the node positions using EGNN layers
-
-Classifier
-
-Operates on the latent vector to predict the shape class (circle or square)
+### Classifier
+    Operates on the latent vector to predict the shape class (circle or square)
 
 Training
 
